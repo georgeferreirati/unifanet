@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-compatible" content="ie=edge">-->
+    <title>Calendário</title>
+
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+</head>
+<body>
+<div class="header">
+            <h1>Calendário</h1>
+        <nav>
+            <ul>
+                <li>
+                    <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+                <li>
+                    <a href="{% url 'index' %}">Home</a>
+                </li>
+                <li>
+                    {% block head %}
+                    {% endblock %}
+                </li>
+            </ul>
+        </nav>
+    </div>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

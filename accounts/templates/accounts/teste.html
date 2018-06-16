@@ -1,0 +1,11 @@
+{% extends 'base_layout_accounts.html' %}
+
+{% block content %}
+    <h1>Cadastro</h1>
+    <form class="site-form" action="/signup/" method="post">
+        {% csrf_token %}
+        {{user_form.as_p}}
+        {{profile_form.as_p}}
+        <input type="submit" value="Signup">
+    </form>
+{% endblock %}

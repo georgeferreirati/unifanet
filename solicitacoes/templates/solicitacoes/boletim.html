@@ -1,0 +1,99 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <html>
+     <head>
+         <title>Declaração de Matrícula</title>
+         <style type="text/css">
+             body {
+                 font-weight: 200;
+                 font-size: 14px;
+             }
+             .header {
+                 font-size: 20px;
+                 font-weight: 100;
+                 text-align: center;
+                 color: #007cae;
+             }
+             .title {
+                 font-size: 22px;
+                 font-weight: 100;
+                /* text-align: right;*/
+                padding: 10px 20px 0px 20px;
+             }
+             .title span {
+                 color: #007cae;
+             }
+             .details {
+                 padding: 10px 20px 0px 20px;
+                 text-align: left !important;
+                 /*margin-left: 40%;*/
+                 font-size: 1.2em;
+             }
+             .hrItem {
+                 border: none;
+                 height: 1px;
+                 /* Set the hr color */
+                 color: #333; /* old IE */
+                 background-color: #fff; /* Modern Browsers */
+             }
+             .teste {
+                text-align: center;
+                padding: 200px 200px;
+             }
+
+             th, td {
+                text-align: center;
+                padding-top: 10px;
+             }
+         </style>
+     </head>
+     <body>
+         <div class='wrapper'>
+             <div class='header'>
+                 <p class='title'><h1>Boletim Escolar Eletrônico</h1></p>
+             </div>
+         <div>
+         <div class='details'>
+                <p><b>Aluno:</b> {{estudante}}</p>
+                <p><b>Instituição:</b> Instituição de Teste</p>
+                <p><b>Série:</b> {{estudante.serie}}ª</p>
+         </div>
+             <table border="1">
+                 <tr>
+                    <th><h1>Turma</h1></th>
+                    <th><h1>1º Bimestre</h1></th>
+                    <th><h1>2º Bimestre</h1></th>
+                    <th><h1>3º Bimestre</h1></th>
+                    <th><h1>4º Bimestre</h1></th>
+                </tr>
+                 {% for turma in turmas %}
+                    {% if estudante in turma.estudantes.all %}
+
+                        <tr>
+                            <td>{{turma.name}}</td>
+                            {% for nota in estudante.nota_set.all %}
+                                {% if nota.turma == turma %}
+                                    <td>{{nota.nota1}}</td>
+                                    <td>{{nota.nota2}}</td>
+                                    <td>{{nota.nota3}}</td>
+                                    <td>{{nota.nota4}}</td>
+                                {% else %}
+                                    <td>----</td>
+                                    <td>----</td>
+                                    <td>----</td>
+                                    <td>----</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+
+                    {% endif %}
+                {% endfor %}
+             </table>
+             <div class="teste">
+                <p>
+                    __________________________________________________<br/>Instituição de Ensino
+             </div>
+             <hr class='hrItem' />
+             <p>Emitido em {{ data }}</p>
+     </div>
+     </body>
+ </html>

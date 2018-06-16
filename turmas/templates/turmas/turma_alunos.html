@@ -1,0 +1,30 @@
+{% extends 'base_layout_turmas.html' %}
+
+{% block content %}
+    <div class="menu">
+        <ul>
+          <li><a href="{% url 'turmas:detail' id=turma.id %}">Descrição</a></li>
+          <li><a href="{% url 'turmas:aulas' id=turma.id %}">Aulas</a></li>
+          <li><a class="active" href="{% url 'turmas:alunos' id=turma.id %}">Alunos</a></li>
+          <li><a href="{% url 'turmas:notas' id=turma.id %}">Notas</a></li>
+          <li><a href="{% url 'turmas:forum' id=turma.id %}">Forum</a></li>
+        </ul>
+    </div>
+    <div class="teste">
+        <table style="width: 85%" border="1" align="center">
+            <tr>
+                <th><h1>Aluno</h1></th>
+                <th><h1>Matricula</h1></th>
+
+            </tr>
+
+        {% for estudante in turma.estudantes.all %}
+            <tr align="center">
+                <td><h2>{{estudante.user.get_full_name}}</h2></td>
+                <td><h2>{{estudante.matricula}}</h2></td>
+            </tr>
+        {% endfor %}
+        </table>
+        <button><a href="{% url 'turmas:add_alunos' id=turma.id %}">Add</a></button>
+    </div>
+{% endblock %}

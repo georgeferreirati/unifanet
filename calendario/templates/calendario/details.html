@@ -1,0 +1,9 @@
+{% extends 'calendario/base.html' %}
+
+{% block content %}
+<div class="container jumbotron">
+    <h1>{{ entry.name }}</h1>
+    <h2>{{ entry.date }}</h2>
+    <h3>{{ entry.description }}</h3>
+</div>
+{% endblock %}

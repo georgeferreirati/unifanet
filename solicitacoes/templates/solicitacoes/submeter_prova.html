@@ -1,0 +1,27 @@
+{% extends 'base_layout_turmas.html' %}
+
+{% block content %}
+    <div class="menu">
+        <ul>
+          {% if user.profile.is_coordenador%}
+          <li><a style="font-size: 1.3em;" class="{% if teste == 1 %}active{% endif %}" href="{% url 'accounts:estudante' %}">Novo Estudante</a></li>
+          <li><a style="font-size: 1.3em;" class="{% if teste == 2 %}active{% endif %}" href="{% url 'accounts:professor' %}">Novo Professor</a></li>
+          <li><a style="font-size: 1.3em;" class="{% if teste == 3 %}active{% endif %}" href="{% url 'turmas:criar_turma' %}">Nova Turma</a></li>
+          <li><a style="font-size: 1.3em;" class="{% if teste == 4 %}active{% endif %}" href="{% url 'solicitacoes:matricular_aluno' %}">Matricular Alunos</a></li>
+          <li><a style="font-size: 1.3em;" class="{% if teste == 5 %}active{% endif %}" href="{% url 'solicitacoes:solicitar_boletim' %}">Emitir Boletim</a></li>
+          {% endif %}
+          <li><a style="font-size: 1.3em;" class="{% if teste == 6 %}active{% endif %}" href="{% url 'solicitacoes:submeter_prova' %}">Submeter Prova</a></li>
+          {% if user.profile.is_coordenador%}
+          <li><a style="font-size: 1.3em;" class="{% if teste == 7 %}active{% endif %}" href="{% url 'solicitacoes:listar_provas' %}">Listar Provas</a></li>
+          {% endif %}
+        </ul>
+    </div>
+    <div class="teste">
+        <h1>Cadastro de Prova</h1>
+        <form class="site-form" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Submeter">
+        </form>
+    </div>
+{% endblock %}

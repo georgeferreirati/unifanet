@@ -1,0 +1,16 @@
+{%extends 'calendario/base.html'%}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <h2> Você tem certeza que deseja deletar </h2>
+    <button type="submit"> Sim </button>
+</form>
+</body>
+</html>
+{% endblock %}

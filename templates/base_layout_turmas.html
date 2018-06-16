@@ -1,0 +1,42 @@
+<!-- Base de todos as views -->
+<!DOCTYPE html>
+{% load static from staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unifanet</title>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+</head>
+<body>
+    <div class="header">
+        {% if turma %}
+            <h1>{{turma.name}}</h1>
+        {% else %}
+            <h1>Turmas</h1>
+        {% endif %}
+        <nav>
+            <ul>
+                <li>
+                    <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+                <li>
+                    <a href="{% url 'index' %}">Home</a>
+                </li>
+                <li>
+                    {% block head %}
+                    {% endblock %}
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="wrapper">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% block signup %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends 'base_layout_turmas.html' %}
+
+{% block content %}
+    <div class="menu">
+        <ul>
+          <li><a href="{% url 'turmas:detail' id=turma.id %}">Descrição</a></li>
+          <li><a href="{% url 'turmas:aulas' id=turma.id %}">Aulas</a></li>
+          <li><a href="{% url 'turmas:alunos' id=turma.id %}">Alunos</a></li>
+          <li><a href="{% url 'turmas:notas' id=turma.id %}">Notas</a></li>
+          <li><a class="active" href="{% url 'turmas:forum' id=turma.id %}">Forum</a></li>
+        </ul>
+    </div>
+    <div class="teste">
+        <form class="site-form" method="post">
+        {% for postagem in turma.postagem_set.all %}
+                <a href="{% url 'turmas:exibir_postagem' id=turma.id id1=postagem.id %}"><h3>{{postagem.titulo}}</h3></a>
+                <p>Criado por <b>{{postagem.user.get_full_name}}</b> em <b>{{postagem.data|date:'d-m-Y'}}</b></p>
+
+                {% if postagem.user == user %}
+                <button><a href="{{postagem.id}}/delete">Excluir</a></button>
+                <button><a href="{{postagem.id}}/update">Atualizar</a></button>
+                {% endif %}
+        {% endfor %}
+        <hr/>
+        <br/>
+        <button><a href="{% url 'turmas:criar_postagem' id=turma.id %}">Criar</a></button>
+        </form>
+    </div>
+{% endblock %}

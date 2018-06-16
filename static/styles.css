@@ -1,0 +1,161 @@
+body {
+    font-family: Arial;
+    padding: 10px;
+    background-color: #000745;
+    color: #fff;
+}
+
+.header {
+    padding: 10px;
+    text-align: center;
+    background-color: #000424;
+    font-size: 15px;
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.fakeimg {
+    background-color: #aaa;
+    width: 85%;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.card {
+    background-color: #000424;
+    width: 20%;
+    height: 390px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    float: left;
+}
+
+.menu {
+    float: left;
+    margin-top: 15px;
+    margin-left: 15px;
+    padding-left: 15px;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000424;
+}
+
+.menu li a {
+    display: block;
+    color: #fff;
+    padding: 16px 32px;
+    text-decoration: none;
+    font-size: 30px;
+    text-align: center;
+}
+
+.menu li a.active {
+    background-color: #f0ca69;
+    color: white;
+}
+
+.menu li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+.teste {
+    background: #000424;
+    margin-top: 15px;
+    margin-left: 15px;
+    padding-left: 15px;
+    width: 75%;
+    height: 100%;
+    float: left;
+}
+
+.teste form{
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+@media screen and (max-width: 800px) {
+    .menu, .teste {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+nav{
+    justify-self: end;
+}
+
+nav li{
+    display: inline-block;
+    padding-left: 20px;
+}
+
+nav button{
+    background: none;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+    font-size: 1.2em;
+}
+
+nav a{
+    background: none;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.site-form{
+    margin-top: 60px;
+    border: 1px solid #fACC14;
+    padding: 20px;
+}
+
+.site-form input, textarea, select{
+    display: block;
+    margin: 20px 0 10px 0;
+    padding: 10px;
+}
+
+.helptext{
+    margin: 0 auto 20px;
+    color: #bbb;
+    font-size: 0.9em;
+    display: block;
+}
+
+.errorlist li{
+    padding: 10px;
+    list-style-type: none;
+    border: 1px solid #ff5722;
+    color: #ff5722;
+    margin: 10px 0;
+}
+
+.calendar_entry{
+    background-color: #000424;
+
+}
+
+.card2 {
+    background-color: #000424;
+    width: 20%;
+    height: 150px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    float: left;
+}

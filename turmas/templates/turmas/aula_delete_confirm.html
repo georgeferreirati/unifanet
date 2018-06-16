@@ -1,0 +1,13 @@
+{% extends 'base_layout_turmas.html' %}
+
+{% block signup %}
+    <form class="site-form" method="post">
+        <h1>Criar Aula</h1>
+        {% csrf_token %}
+        <h2>Voce tem certeza que quer remover {{ aula.title }} ?</h2>
+        <input type="submit" value="Sim">
+        <a href="{% url 'turmas:aulas' id=turma.id %}">
+            <input type="button" value="Não">
+        </a>
+    </form>
+{% endblock %}

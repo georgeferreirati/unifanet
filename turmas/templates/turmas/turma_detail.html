@@ -1,0 +1,22 @@
+{% extends 'base_layout_turmas.html' %}
+
+{% block head %}
+    {% if user.profile.is_professor or user.profile.is_coordenador%}
+        <a href="{% url 'turmas:atualizar_turma' id=turma.id %}">Atualizar Turma</a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="menu">
+        <ul>
+          <li><a class="active" href="{% url 'turmas:detail' id=turma.id %}">Descrição</a></li>
+          <li><a href="{% url 'turmas:aulas' id=turma.id %}">Aulas</a></li>
+          <li><a href="{% url 'turmas:alunos' id=turma.id %}">Alunos</a></li>
+          <li><a href="{% url 'turmas:notas' id=turma.id %}">Notas</a></li>
+          <li><a href="{% url 'turmas:forum' id=turma.id %}">Forum</a></li>
+        </ul>
+    </div>
+    <div class="teste">
+        <h2>{{turma.description}}</h2>
+    </div>
+{% endblock %}

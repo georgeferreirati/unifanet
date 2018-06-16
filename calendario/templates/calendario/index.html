@@ -1,0 +1,17 @@
+{%extends 'calendario/base.html'%}
+{% block head %}
+{% if user.profile.is_coordenador%}
+<button onclick="window.location='{% url 'calendario:add'%}'"class="btn btn-sucess"> Adicionar evento </button>
+{% endif %}
+{% endblock %}
+{% block content %}
+    <hr />
+    <div class="row">
+        {% for entry in entries %}
+            <div class="card2">
+            {% include 'calendario/_calendar_entry.html' %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

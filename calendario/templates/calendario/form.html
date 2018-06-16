@@ -1,0 +1,16 @@
+{% extends 'calendario/base.html' %}
+{% block head %}
+<button onclick="window.location='{% url 'calendario:index'%}'"> Retornar </button>
+{% endblock %}
+
+{% block content %}
+<div class="container form-group">
+
+    <form class="site-form" method="POST">
+        {% csrf_token %} <!-- utilizado para a segurança do formulário para não sofrer edição-->
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+ </div>
+{% endblock %}
+

@@ -1,0 +1,22 @@
+{% extends 'base_layout_turmas.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="card">
+            <h2 align="center">
+                <a href="{% url 'turmas:list' %}">Turmas</a>
+            </h2>
+        </div>
+        <div class="card">
+            <h2 align="center">
+                <a href="{% url 'solicitacoes:home' %}">Solicitações</a>
+            </h2>
+        </div>
+        <div class="card">
+            <h2 align="center">
+                <a href="{% url 'calendario:index' %}">Calendário</a>
+            </h2>
+        </div>
+    </div>
+    </div>
+{% endblock %}

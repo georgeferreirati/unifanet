@@ -1,0 +1,23 @@
+{% extends 'base_layout_turmas.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="card">
+            <h2 align="center">
+                <a href="{% url 'solicitacoes:pdf' %}" target="_new">Declaração</a>
+            </h2>
+        </div>
+        <div class="card">
+            <h2 align="center">
+                <a href="{% url 'solicitacoes:matricula' %}">Solicitação de Matrícula</a>
+            </h2>
+        </div>
+        {% if user.profile.is_professor or user.profile.is_coordenador%}
+        <div class="card">
+            <h2 align="center">
+                <a href="{% url 'solicitacoes:submeter_prova' %}">Cadastro</a>
+            </h2>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

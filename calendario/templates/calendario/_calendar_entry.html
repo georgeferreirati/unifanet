@@ -1,0 +1,10 @@
+<div class="calendar_entry col-lg-4">
+        <h2>{{ entry.name }}</h2>
+        <h4> {{ entry.date|date:"d-m-Y" }}</h4>
+        <p>{{ entry.description| truncatechars:50 }}</p>
+        <button onclick="window.location='{% url 'calendario:details' pk=entry.id %}'"> Ver Detalhes</button>
+        {% if user.profile.is_coordenador%}
+        <button onclick="window.location='{% url 'calendario:delete' id=entry.id %}'" > Delete </button>
+        <button onclick="window.location='{% url 'calendario:alterar' id=entry.id %}'"> Alterar </button>
+        {% endif %}
+</div>

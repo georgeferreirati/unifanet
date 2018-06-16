@@ -1,0 +1,41 @@
+{% extends 'base_layout_turmas.html' %}
+
+{% block content %}
+    <div class="row">
+        {% for turma in turmas %}
+            {% for estudante in turma.estudantes.all %}
+                {% if estudante.user == user %}
+                    <div class="card">
+                        <h2 align="center">
+                            <a href="{{turma.id}}">{{turma.name}}</a>
+                            <div class="fakeimg" style="height:150px;">Image</div>
+                            <p>{{turma.snippet}}</p>
+                        </h2>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            {% for professor in turma.professor.all %}
+                {% if professor.user == user %}
+                    <div class="card">
+                        <h2 align="center">
+                            <a href="{{turma.id}}">{{turma.name}}</a>
+                            <div class="fakeimg" style="height:150px;">Image</div>
+                            <p>{{turma.snippet}}</p>
+                        </h2>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            {% for coordenador in turma.coordenador.all %}
+                {% if coordenador.user == user %}
+                    <div class="card">
+                        <h2 align="center">
+                            <a href="{{turma.id}}">{{turma.name}}</a>
+                            <div class="fakeimg" style="height:150px;">Image</div>
+                            <p>{{turma.snippet}}</p>
+                        </h2>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endblock %}

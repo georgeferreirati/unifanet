@@ -1,0 +1,31 @@
+{% extends 'base_layout_turmas.html' %}
+
+{% block content %}
+    <div class="menu">
+        <ul>
+          <li><a href="{% url 'turmas:detail' id=turma.id %}">Descrição</a></li>
+          <li><a class="active" href="{% url 'turmas:aulas' id=turma.id %}">Aulas</a></li>
+          <li><a href="{% url 'turmas:alunos' id=turma.id %}">Alunos</a></li>
+          <li><a href="{% url 'turmas:notas' id=turma.id %}">Notas</a></li>
+          <li><a href="{% url 'turmas:forum' id=turma.id %}">Forum</a></li>
+        </ul>
+    </div>
+    <div class="teste">
+        <form class="site-form" method="post">
+        <ol>
+        {% for aula in turma.aula_set.all %}
+            <li>
+                <h3>{{aula.title}}</h3>
+                <p>{{aula.description}}</p>
+                {% if user.profile.is_professor or user.profile.is_coordenador%}
+                <button><a href="{{aula.id}}/delete">Excluir</a></button>
+                <button><a href="{{aula.id}}/update">Atualizar</a></button>
+                <button><a href="{{aula.id}}/presenca">Presença</a></button>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ol>
+        <button><a href="{% url 'turmas:criar_aula' id=turma.id %}">Criar</a></button>
+        </form>
+    </div>
+{% endblock %}

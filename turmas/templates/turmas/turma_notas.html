@@ -1,0 +1,68 @@
+{% extends 'base_layout_turmas.html' %}
+
+{% block content %}
+    <div class="menu">
+        <ul>
+          <li><a href="{% url 'turmas:detail' id=turma.id %}">Descrição</a></li>
+          <li><a href="{% url 'turmas:aulas' id=turma.id %}">Aulas</a></li>
+          <li><a href="{% url 'turmas:alunos' id=turma.id %}">Alunos</a></li>
+          <li><a class="active" href="{% url 'turmas:notas' id=turma.id %}">Notas</a></li>
+          <li><a href="{% url 'turmas:forum' id=turma.id %}">Forum</a></li>
+        </ul>
+    </div>
+    <div class="teste">
+        {% if user.profile.is_professor or user.profile.is_coordenador%}
+        {% for estudante in turma.estudantes.all %}
+            {% if estudante.user == user %}
+                {% for nota in estudante.nota_set.all %}
+                    {% if nota.turma == turma %}
+                        <table style="width: 85%" border="1" align="center">
+                            <tr>
+                                <th><h1>Aluno</h1></th>
+                                <th><h1>1º Bimestre</h1></th>
+                                <th><h1>2º Bimestre</h1></th>
+                                <th><h1>3º Bimestre</h1></th>
+                                <th><h1>4º Bimestre</h1></th>
+
+                            </tr>
+                            <tr align="center">
+                                <td><h2>{{user.get_full_name}}</h2></td>
+                                <td><h2>{{nota.nota1}}</h2></td>
+                                <td><h2>{{nota.nota2}}</h2></td>
+                                <td><h2>{{nota.nota3}}</h2></td>
+                                <td><h2>{{nota.nota4}}</h2></td>
+                        </table>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+        <table style="width: 85%" border="1" align="center">
+                            <tr>
+                                <th><h1>Aluno</h1></th>
+                                <th><h1>1º Bimestre</h1></th>
+                                <th><h1>2º Bimestre</h1></th>
+                                <th><h1>3º Bimestre</h1></th>
+                                <th><h1>4º Bimestre</h1></th>
+
+                            </tr>
+        {% for estudante in turma.estudantes.all %}
+            {% for nota in estudante.nota_set.all %}
+                    {% if nota.turma == turma %}
+
+                            <tr align="center">
+                                <td><h2>{{estudante.user.get_full_name}}</h2></td>
+                                <td><h2>{{nota.nota1}}</h2></td>
+                                <td><h2>{{nota.nota2}}</h2></td>
+                                <td><h2>{{nota.nota3}}</h2></td>
+                                <td><h2>{{nota.nota4}}</h2></td>
+                            </tr>
+                    {% endif %}
+                {% endfor %}
+        {% endfor %}
+        </table>
+        {% if user.profile.is_professor or user.profile.is_coordenador%}
+        <button><a href="{% url 'turmas:criar_nota' id=turma.id %}">Lançar Notas</a></button>
+        {% endif %}
+    </div>
+{% endblock %}

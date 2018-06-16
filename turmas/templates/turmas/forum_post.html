@@ -1,0 +1,39 @@
+{% extends 'base_layout_turmas.html' %}
+
+{% block content %}
+    <div class="menu">
+        <ul>
+          <li><a href="{% url 'turmas:detail' id=turma.id %}">Descrição</a></li>
+          <li><a href="{% url 'turmas:aulas' id=turma.id %}">Aulas</a></li>
+          <li><a href="{% url 'turmas:alunos' id=turma.id %}">Alunos</a></li>
+          <li><a href="{% url 'turmas:notas' id=turma.id %}">Notas</a></li>
+          <li><a class="active" href="{% url 'turmas:forum' id=turma.id %}">Forum</a></li>
+        </ul>
+    </div>
+    <div class="teste">
+        <p>
+            <b style="font-size: 1.6em;">{{postagem.titulo}}</b>
+            <b style="float: right;">Criado por {{postagem.user.get_full_name}}
+            em {{postagem.data|date:'d-m-Y'}}</b>
+        </p>
+        <form class="site-form" method="post">
+            <p>{{postagem.descricao}}</p>
+        <br/>
+            <button>
+                <a href="{% url 'turmas:criar_resposta' id=turma.id id1=postagem.id %}">Responder</a>
+            </button>
+        </form>
+        <h3>Respostas:</h3>
+    </div>
+    {% for resposta in postagem.resposta_set.all %}
+    <div class="teste" style="float: right;">
+        <p>
+            <b style="font-size: 1.0em;">{{resposta.user.get_full_name}}</b>
+            <b style="float: right;">Resposta em {{resposta.data|date:'d-m-Y'}}</b>
+        </p>
+        <form class="site-form">
+            <h3>{{resposta.texto}}</h3>
+        </form>
+    </div>
+    {% endfor %}
+{% endblock %}
